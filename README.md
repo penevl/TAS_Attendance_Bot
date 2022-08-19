@@ -2,4 +2,5 @@
 
 # Setting the environment variables
 # Getting the SPREADSHEET_ID
-<img src="https://imgur.com/a/XD27X10" />">
+
+<img src="https://imgur.com/a/XD27X10" height="512" />">
