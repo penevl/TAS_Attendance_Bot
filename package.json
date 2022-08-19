@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "gamedig": "^4.0.5",
+    "googleapis": "^105.0.0",
+    "moment": "^2.29.4"
+  },
+  "name": "tas_attendance_bot",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start" : "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/penevl/TAS_Attendance_Bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/penevl/TAS_Attendance_Bot/issues"
+  },
+  "homepage": "https://github.com/penevl/TAS_Attendance_Bot#readme"
+}
