@@ -1,3 +1,5 @@
 # TAS_Attendance_Bot
 
-<h2>Setting the environment variables</h2>
+# Setting the environment variables
+# Getting the SPREADSHEET_ID
+<img src="https://imgur.com/a/XD27X10" />">
