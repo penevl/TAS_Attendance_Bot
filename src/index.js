@@ -109,7 +109,7 @@ gamedig.query({
     logAll();
       
 }).catch((error) => {
-    logger.info(error)
+    logger.error(error)
 }) 
 
 function logAll(){
