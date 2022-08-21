@@ -23,7 +23,7 @@ then the id will be:
 If a player is asigned to a squad in-game if you put their exact in-game username in one of the variables that will cause the script to log their attendace on a separate sheet along with the attendance of everyone else. You can seperate each person with a comma.
 ## Getting the "credentials.json file"
 ### Step 1.
-Go to: `https://console.cloud.google.com/welcome?project=tas-attendance-359916`
+Go to: `https://console.cloud.google.com/`
 ### Step 2. Create a new project
 To create a new project click on the button shown on the picture
 <img src="./res/1.png">
