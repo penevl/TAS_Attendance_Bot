@@ -27,3 +27,5 @@ Go to: `https://console.cloud.google.com/`
 ### Step 2. Create a new project
 To create a new project click on the button shown on the picture
 <img src="./res/1.png">
+
+then click on the "New Project" and give your project a name.After the project is done creating <u>make sure you have selected the right project</u>
