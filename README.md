@@ -51,3 +51,8 @@ Click on the email you got, go to the "KEYS" section at the top and click "ADD K
 At the botton of the page rename the "Sheets1" sheet to "All" and then add four new sheets with the names "Alpha", "Bravo", "Charlie" and "Delta"
 ### Step 3. Giving the bot write permissions
 Click the green "Share" at the top right of the screen, give the sheet a name and save it. Then paste the bot email in the "Add people and groups" field, make sure the bot is an "Editor" and uncheck the "Notify people" checkbox then click send
+## Building and running the docker image
+### Step 1. Building the docker image
+Open a terminal window in the base directory of the bot and run `docker build -t <IMAGE_NAME> .`
+### Step 2. Running the docker image through the Docker desktop application.
+Open the Docker desktop app and go to "Images". There you should see an image with the name you gave it in the previous step. Hover over it and click the "RUN" button. Under "Optional settings" give the container a name and if you have enabled logging under volumes you can select a "Host path" which is the location where all log files will be saved on your local machine and under "Container path" put "/app/logs". Click run.
