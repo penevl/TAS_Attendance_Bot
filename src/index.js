@@ -8,15 +8,20 @@ import { google } from"googleapis"
 import moment from'moment'
 import logger from"./logger.js"
 
+import {schedule} from "node-cron"
+
 logger.setLoggingLevel(process.env.LOG_LEVEL);
 logger.setLogFileLocation(process.env.LOG_LOCATION)
-
- 
 
 logger.info("Reading SERVER_IP")
 const SERVER_IP = process.env.SERVER_IP 
 logger.info("Server IP read successfuly")
 logger.debug("Server ip is: " + SERVER_IP)
+
+logger.info("Reading MIN_PLAYERS")
+const MIN_PLAYERS = process.env.MIN_PLAYERS
+logger.info("MIN_PLAYERS read successfuly")
+logger.debug("MIN_PLAYERS are " + MIN_PLAYERS)
 
 logger.info("Reading spreadsheetId")
 const spreadsheetId = process.env.SPREADSHEET_ID 
@@ -67,7 +72,11 @@ const googleSheets = google.sheets({
     version : "v4",
     auth: client
 })
+
 logger.info("googleSheets object created successfuly")
+var playerCount;
+
+schedule("15 * * * *",() => {
 
 logger.info("Quering server")
 gamedig.query({
@@ -76,6 +85,9 @@ gamedig.query({
 }).then((state) => {
     logger.info("Quering successful")
     logger.info("Getting players")
+    playerCount = state.players.length;
+    logger.debug("Player count is " + playerCount)
+    if(playerCount > MIN_PLAYERS){
     state.players.forEach(p => {
         var player = p.name
         playerList.push(player)
@@ -107,10 +119,14 @@ gamedig.query({
     logger.debug("DeltaAttended is: " + DeltaAttended)
 
     logAll();
-      
+  }else{
+    logger.info("Not enough players to be logged")
+  }
 }).catch((error) => {
     logger.error(error)
 }) 
+
+})
 
 function logAll(){
   logEveryone()
