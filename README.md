@@ -21,6 +21,8 @@ then the id will be:
 `1xqWRhVC5hfgdhjsiE-2beYDPUi-c2FjEHOXtrlTF9iao`
 ### ALPHA, BRAVO, CHARLIE, DELTA
 If a player is asigned to a squad in-game if you put their exact in-game username in one of the variables that will cause the script to log their attendace on a separate sheet along with the attendance of everyone else. You can seperate each person with a comma.
+
+<u><b>WARNING: There is a difference between how players in game might see the name of a player and how the bot sees it. It is recommended that any time you change these variable you set `LOG_LEVEL` to `debug` in order to check if you have written the names correctly.</b></u>
 ## Getting the "credentials.json" file
 ### Step 1.
 Go to: `https://console.cloud.google.com/`
