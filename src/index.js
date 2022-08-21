@@ -1,14 +1,19 @@
-import gamedig from"gamedig"
+var logger = require("./logger")
 
-import dotenv from"dotenv"
+var dotenv = require("dotenv")
 dotenv.config()
 
-import { google } from"googleapis" 
+const gamedig = require("gamedig")
 
-import moment from'moment'
-import logger from"./logger.js"
+var {google} = require("googleapis") 
 
-import {schedule} from "node-cron"
+var moment = require('moment')
+
+var cron = require("node-cron")
+
+const {startWebServer} = require("./website")
+
+
 
 logger.setLoggingLevel(process.env.LOG_LEVEL);
 logger.setLogFileLocation(process.env.LOG_LOCATION)
@@ -17,12 +22,6 @@ logger.info("Reading CRON_WAIT_BETWEEN_SCAN")
 const CRON_WAIT_BETWEEN_SCAN = process.env.CRON_WAIT_BETWEEN_SCAN
 logger.info("CRON_WAIT_BETWEEN_SCAN read successfuly")
 logger.debug("CRON_WAIT_BETWEEN_SCAN is: " + CRON_WAIT_BETWEEN_SCAN)
-
-
-logger.info("Reading CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN")
-const CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN = process.env.CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN
-logger.info("CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN read successfuly")
-logger.debug("CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN is: " + CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN)
 
 logger.info("Reading SERVER_IP")
 const SERVER_IP = process.env.SERVER_IP 
@@ -87,7 +86,9 @@ const googleSheets = google.sheets({
 logger.info("googleSheets object created successfuly")
 var playerCount;
 
-schedule(CRON_WAIT_BETWEEN_SCAN,() => {
+startWebServer(logger,getAllAttendance(),getAlphaAttendance(),getBravoAttendance(),getCharlieAttendance(),getDeltaAttendance())
+
+cron.schedule("15 * * * * *",() => {
 
 logger.info("Quering server")
 gamedig.query({
@@ -103,7 +104,6 @@ gamedig.query({
         var player = p.name
         playerList.push(player)
         logger.debug("Player " + player +" added to playerList")
-        logger.debug("Player " + player +" added to ")
         if (ALPHA.includes(player)){
             AlphaAttended.push(player)
             logger.debug("Player " + player +" added to ALPHA")        
@@ -130,7 +130,6 @@ gamedig.query({
     logger.debug("DeltaAttended is: " + DeltaAttended)
 
     logAll();
-    waitForOpEnd();
 
   }else{
     logger.info("Not enough players to be logged")
@@ -224,8 +223,52 @@ function logDelta(){
 
 }
 
-function waitForOpEnd(){
-schedule(CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN,() => {
-  
-})
+async function getAllAttendance() {
+
+  return googleSheets.spreadsheets.values.get({
+    auth,
+    spreadsheetId,
+    range: "All!A:B",
+  })
+
+}
+
+async function getAlphaAttendance() {
+
+  return googleSheets.spreadsheets.values.get({
+    auth,
+    spreadsheetId,
+    range: "Alpha!A:B",
+  })
+
+}
+
+async function getBravoAttendance() {
+
+  return googleSheets.spreadsheets.values.get({
+    auth,
+    spreadsheetId,
+    range: "Bravo!A:B",
+  })
+
+}
+
+async function getCharlieAttendance() {
+
+  return googleSheets.spreadsheets.values.get({
+    auth,
+    spreadsheetId,
+    range: "Charlie!A:B",
+  })
+
+}
+
+async function getDeltaAttendance() {
+
+  return googleSheets.spreadsheets.values.get({
+    auth,
+    spreadsheetId,
+    range: "Delta!A:B",
+  })
+
 }
