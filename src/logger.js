@@ -1,5 +1,5 @@
-import fs from "fs"
-import moment from'moment'
+var fs = require("fs")
+var moment = require('moment')
 
     var logDebug = false
     var logInfo = true
@@ -89,4 +89,4 @@ import moment from'moment'
 function getTime(){
     return moment(new Date(), "YYYY-MM-DD").add(new Date().getTimezoneOffset(),'minute').format('DD-MM-YYYY-H-m-s')
 }    
-export default {setLogFileLocation,setLoggingLevel,debug,info,warn,error}
+module.exports = {setLogFileLocation,setLoggingLevel,debug,info,warn,error}

@@ -11,8 +11,6 @@ The `LOG_LOCATION` variable is the place where all the log files will be stored.
 The `MIN_PLAYERS` variable defines the ammount of players needed for the sript to actually log people in to google sheets.
 ### CRON_WAIT_BETWEEN_SCAN
 The `CRON_WAIT_BETWEEN_SCAN` variable sets the time between each scan of the server
-### CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN
-The `CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN` variable sets the amount of time which the bot will do nothing after he has logged the players to google sheets.
 ### SERVER_IP
 The IP of the server
 ### SPREADSHEET_ID
