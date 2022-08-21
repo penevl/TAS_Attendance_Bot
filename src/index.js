@@ -13,6 +13,17 @@ import {schedule} from "node-cron"
 logger.setLoggingLevel(process.env.LOG_LEVEL);
 logger.setLogFileLocation(process.env.LOG_LOCATION)
 
+logger.info("Reading CRON_WAIT_BETWEEN_SCAN")
+const CRON_WAIT_BETWEEN_SCAN = process.env.CRON_WAIT_BETWEEN_SCAN
+logger.info("CRON_WAIT_BETWEEN_SCAN read successfuly")
+logger.debug("CRON_WAIT_BETWEEN_SCAN is: " + CRON_WAIT_BETWEEN_SCAN)
+
+
+logger.info("Reading CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN")
+const CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN = process.env.CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN
+logger.info("CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN read successfuly")
+logger.debug("CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN is: " + CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN)
+
 logger.info("Reading SERVER_IP")
 const SERVER_IP = process.env.SERVER_IP 
 logger.info("Server IP read successfuly")
@@ -76,7 +87,7 @@ const googleSheets = google.sheets({
 logger.info("googleSheets object created successfuly")
 var playerCount;
 
-schedule("15 * * * *",() => {
+schedule(CRON_WAIT_BETWEEN_SCAN,() => {
 
 logger.info("Quering server")
 gamedig.query({
@@ -119,6 +130,8 @@ gamedig.query({
     logger.debug("DeltaAttended is: " + DeltaAttended)
 
     logAll();
+    waitForOpEnd();
+
   }else{
     logger.info("Not enough players to be logged")
   }
@@ -209,4 +222,10 @@ function logDelta(){
   }) 
   logger.info("All players from DeltaAttended logged to google sheets")
 
+}
+
+function waitForOpEnd(){
+schedule(CRON_WAIT_BETWEEN_SUCCESSFUL_SCAN,() => {
+  
+})
 }
