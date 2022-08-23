@@ -23,6 +23,11 @@ const CRON_WAIT_BETWEEN_SCAN = process.env.CRON_WAIT_BETWEEN_SCAN
 logger.info("CRON_WAIT_BETWEEN_SCAN read successfuly")
 logger.debug("CRON_WAIT_BETWEEN_SCAN is: " + CRON_WAIT_BETWEEN_SCAN)
 
+logger.info("Reading WEB_VIEW_PORT")
+const WEB_VIEW_PORT = process.env.WEB_VIEW_PORT;
+logger.info("WEB_VIEW_PORT read successfuly")
+logger.debug("WEB_VIEW_PORT is: " + WEB_VIEW_PORT)
+
 logger.info("Reading SERVER_IP")
 const SERVER_IP = process.env.SERVER_IP 
 logger.info("Server IP read successfuly")
@@ -86,7 +91,7 @@ const googleSheets = google.sheets({
 logger.info("googleSheets object created successfuly")
 var playerCount;
 
-startWebServer(logger,getAllAttendance(),getAlphaAttendance(),getBravoAttendance(),getCharlieAttendance(),getDeltaAttendance())
+startWebServer(logger,getAllAttendance(),getAlphaAttendance(),getBravoAttendance(),getCharlieAttendance(),getDeltaAttendance(),WEB_VIEW_PORT)
 
 cron.schedule("15 * * * * *",() => {
 
