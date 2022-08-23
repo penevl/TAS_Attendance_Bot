@@ -13,6 +13,8 @@ The `MIN_PLAYERS` variable defines the ammount of players needed for the sript t
 The `CRON_WAIT_BETWEEN_SCAN` variable sets the time between each scan of the server
 ### SERVER_IP
 The IP of the server
+### WEB_VIEW_PORT
+The `WEB_VIEW_PORT` variable determines on which port the web interface will be accessible on. If set to anything below 0 there will be no web interface.
 ### SPREADSHEET_ID
 The `SPREADSHEET_ID` variable is the id of the spreadsheet you want the bot to log to. The id can be gotten from the spreadsheet link. For example if the spreadsheet link is:
 
