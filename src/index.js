@@ -65,6 +65,7 @@ logger.debug("Delta members are: "  + DELTA)
 var playerList = [] 
 const date = new Date() 
 var dateTime = moment(date, "YYYY-MM-DD").add(new Date().getTimezoneOffset(),'minute').format('DD-MM-YYYY')
+var shouldScan = true;
 
 logger.info("Creating google auth object")
 const auth = new google.auth.GoogleAuth({
@@ -86,9 +87,11 @@ const googleSheets = google.sheets({
 logger.info("googleSheets object created successfuly")
 var playerCount;
 
-startWebServer(logger,getAllAttendance(),getAlphaAttendance(),getBravoAttendance(),getCharlieAttendance(),getDeltaAttendance())
+startWebServer(logger,getAllAttendance(),getAlphaAttendance(),getBravoAttendance(),getCharlieAttendance(),getDeltaAttendance(),5000)
 
-cron.schedule("15 * * * * *",() => {
+if(shouldScan){
+
+cron.schedule(CRON_WAIT_BETWEEN_SCAN,() => {
 
 logger.info("Quering server")
 gamedig.query({
@@ -130,6 +133,7 @@ gamedig.query({
     logger.debug("DeltaAttended is: " + DeltaAttended)
 
     logAll();
+    waitForMissionEnd();
 
   }else{
     logger.info("Not enough players to be logged")
@@ -140,12 +144,23 @@ gamedig.query({
 
 })
 
+}
+
 function logAll(){
   logEveryone()
   logAlpha()
   logBravo()
   logCharlie()
   logDelta()
+}
+
+function waitForMissionEnd(){
+  logger.info("shouldScan set to false")
+  shouldScan = false
+  cron.schedule("* 23 * * * *",() => {
+    shouldScan = true
+    logger.info("shouldScan set to true")
+  })
 }
 
 function logEveryone(){

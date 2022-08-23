@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="container ">
     <b>Whole squad attendance</b>
     <table class="table-bordered">
         <tr>
@@ -19,7 +19,7 @@
         <tr>
              <% All.forEach(element => { %>
                     <tbody>
-                        <td> <%= element[0]  %> </td>
+                        <td class="text-nowrap"> <%= element[0]  %> </td>
                         <td><% for( let index = 1; index < element.length; index++ ) { %>
                             <%= element[index] %> 
                         <% } %></td>
@@ -27,7 +27,7 @@
             <% }) %>
         </tr>    
     </table>
-    <b>Alpha attendance</b>
+    <b class="text-cente">Alpha attendance</b>
     <table class="table-bordered">
         <tr>
             <th>Date</th>
@@ -36,7 +36,7 @@
         <tr>
              <% Alpha.forEach(element => { %>
                     <tbody>
-                        <td> <%= element[0]  %> </td>
+                        <td class="text-nowrap"> <%= element[0]  %> </td>
                         <td><% for( let index = 1; index < element.length; index++ ) { %>
                             <%= element[index] %> 
                         <% } %></td>
@@ -53,7 +53,7 @@
         <tr>
              <% Bravo.forEach(element => { %>
                     <tbody>
-                        <td> <%= element[0]  %> </td>
+                        <td class="text-nowrap"> <%= element[0]  %> </td>
                         <td><% for( let index = 1; index < element.length; index++ ) { %>
                             <%= element[index] %> 
                         <% } %></td>
@@ -70,7 +70,7 @@
         <tr>
              <% Charlie.forEach(element => { %>
                     <tbody>
-                        <td> <%= element[0]  %> </td>
+                        <td class="text-nowrap"> <%= element[0]  %> </td>
                         <td><% for( let index = 1; index < element.length; index++ ) { %>
                             <%= element[index] %> 
                         <% } %></td>
@@ -87,7 +87,7 @@
         <tr>
              <% Delta.forEach(element => { %>
                     <tbody>
-                        <td> <%= element[0]  %> </td>
+                        <td class="text-nowrap"> <%= element[0]  %> </td>
                         <td><% for( let index = 1; index < element.length; index++ ) { %>
                             <%= element[index] %> 
                         <% } %></td>
