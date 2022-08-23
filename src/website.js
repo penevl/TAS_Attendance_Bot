@@ -35,7 +35,7 @@ async function startWebServer(logger,all,alpha,bravo,charlie,delta,port){
         res.render("index",{All : allAtendies,Alpha : alphaAttendies,Bravo : bravoAttendies,Charlie : charlieAttendies,Delta : deltaAttendies})
     })
 
-    logger.info("Web server listening on port " + WEB_VIEW_PORT)
+    logger.info("Web server listening on port " + port)
     app.listen(port)
     }else{
         return

@@ -13,8 +13,6 @@ The `MIN_PLAYERS` variable defines the ammount of players needed for the sript t
 The `CRON_WAIT_BETWEEN_SCAN` variable sets the time between each scan of the server
 ### SERVER_IP
 The IP of the server
-### WEB_VIEW_PORT
-The `WEB_VIEW_PORT` variable determines on which port the web interface will be accessible on. If set to anything below 0 there will be no web interface.
 ### SPREADSHEET_ID
 The `SPREADSHEET_ID` variable is the id of the spreadsheet you want the bot to log to. The id can be gotten from the spreadsheet link. For example if the spreadsheet link is:
 
@@ -61,4 +59,4 @@ Click the green "Share" at the top right of the screen, give the sheet a name an
 ### Step 1. Building the docker image
 Open a terminal window in the base directory of the bot and run `docker build -t <IMAGE_NAME> .`
 ### Step 2. Running the docker image through the Docker desktop application.
-Open the Docker desktop app and go to "Images". There you should see an image with the name you gave it in the previous step. Hover over it and click the "RUN" button. Under "Optional settings" give the container a name and if you have enabled logging under volumes you can select a "Host path" which is the location where all log files will be saved on your local machine and under "Container path" put "/app/logs". Click run.
+Open the Docker desktop app and go to "Images". There you should see an image with the name you gave it in the previous step. Hover over it and click the "RUN" button. Under "Optional settings" give the container a name and if you have enabled logging under volumes you can select a "Host path" which is the location where all log files will be saved on your local machine and under "Container path" put "/app/logs". If you want the web-interface under "Host port" put the port on which you would like the web interface to be on. Click run.
